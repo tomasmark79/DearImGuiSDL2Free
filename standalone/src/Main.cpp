@@ -4,5 +4,5 @@
 #include "AppCore.hpp"
 
 int main (int argc, const char* argv[]) {
-  return runDearImGuiSDL2App (argc, argv);
+  return runDotNameStandalone (argc, argv);
 }

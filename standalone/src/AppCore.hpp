@@ -1,7 +1,7 @@
 // MIT License
 // Copyright (c) 2024-2025 Tomáš Mark
 
-#include "DearImGuiSDL2TemplateClass/DearImGuiSDL2TemplateClass.hpp"
+#include "DotNameLib/DotNameLib.hpp"
 #include "Logger/Logger.hpp"
 #include "Utils/Utils.hpp"
 
@@ -19,8 +19,8 @@
 
 using namespace DotNameUtils;
 
-namespace DearImGuiSDL2AppContext {
-  constexpr char standaloneName[] = "DearImGuiSDL2App";
+namespace DotNameStandaloneContext {
+  constexpr char standaloneName[] = "DotNameStandalone";
   const std::filesystem::path standalonePath
       = PathUtils::getParentPath (PathUtils::getStandalonePath ());
   constexpr std::string_view utilsAssetPath = UTILS_ASSET_PATH;
@@ -29,11 +29,11 @@ namespace DearImGuiSDL2AppContext {
   const std::filesystem::path assetsPathFirstFile = assetsPath / utilsFirstAssetFile;
 }
 
-std::unique_ptr<dotname::DearImGuiSDL2TemplateClass> uniqueLib;
+std::unique_ptr<dotname::DotNameLib> uniqueLib;
 
 int handlesArguments (int argc, const char* argv[]) {
   try {
-    auto options = std::make_unique<cxxopts::Options> (argv[0], DearImGuiSDL2AppContext::standaloneName);
+    auto options = std::make_unique<cxxopts::Options> (argv[0], DotNameStandaloneContext::standaloneName);
     options->positional_help ("[optional args]").show_positional_help ();
     options->set_width (80);
     options->set_tab_expansion ();
@@ -50,13 +50,13 @@ int handlesArguments (int argc, const char* argv[]) {
     }
 
     if (result["log2file"].as<bool> ()) {
-      LOG.enableFileLogging (std::string (DearImGuiSDL2AppContext::standaloneName) + ".log");
+      LOG.enableFileLogging (std::string (DotNameStandaloneContext::standaloneName) + ".log");
       LOG_D_STREAM << "Logging to file enabled [-2]" << std::endl;
     }
 
     if (!result.count ("omit")) {
-      // uniqueLib = std::make_unique<dotname::DearImGuiSDL2TemplateClass> ();
-      uniqueLib = std::make_unique<dotname::DearImGuiSDL2TemplateClass> (DearImGuiSDL2AppContext::assetsPath);
+      // uniqueLib = std::make_unique<dotname::DotNameLib> ();
+      uniqueLib = std::make_unique<dotname::DotNameLib> (DotNameStandaloneContext::assetsPath);
     } else {
       LOG_D_STREAM << "Loading library omitted [-1]" << std::endl;
     }
@@ -95,11 +95,11 @@ int printAssets (const std::filesystem::path& assetsPath) {
   return 0;
 }
 
-int runDearImGuiSDL2App (int argc, const char* argv[]) {
+int runDotNameStandalone (int argc, const char* argv[]) {
 
   LOG.noHeader (true);
   LOG.setSkipLine (false);
-  LOG_I_STREAM << "Starting " << DearImGuiSDL2AppContext::standaloneName << " ..." << std::endl;
+  LOG_I_STREAM << "Starting " << DotNameStandaloneContext::standaloneName << " ..." << std::endl;
 
 #ifdef EMSCRIPTEN
   LOG_I_STREAM << "╰➤ C++ Running in Emscripten environment" << std::endl;
@@ -118,6 +118,6 @@ int runDearImGuiSDL2App (int argc, const char* argv[]) {
   uniqueLib = nullptr;
 
   // bye
-  LOG_I_STREAM << "Sucessfully exited " << DearImGuiSDL2AppContext::standaloneName << std::endl;
+  LOG_I_STREAM << "Sucessfully exited " << DotNameStandaloneContext::standaloneName << std::endl;
   return 0;
 }

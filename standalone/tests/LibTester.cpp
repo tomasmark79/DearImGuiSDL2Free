@@ -4,17 +4,17 @@
 #include "../src/AppCore.hpp"
 #include <gtest/gtest.h>
 
-TEST (DearImGuiSDL2AppLogic, HandlesArguments) {
-  const char* argv[] = { "DearImGuiSDL2App", "--help" };
-  EXPECT_EQ (runDearImGuiSDL2App (2, argv), 0);
+TEST (DotNameStandaloneLogic, HandlesArguments) {
+  const char* argv[] = { "DotNameStandalone", "--help" };
+  EXPECT_EQ (runDotNameStandalone (2, argv), 0);
 }
 
-TEST (DearImGuiSDL2AppLogic, HandlesArgumentsNoLibrary) {
-  const char* argv[] = { "DearImGuiSDL2App", "--omit" };
-  EXPECT_EQ (runDearImGuiSDL2App (2, argv), 0);
+TEST (DotNameStandaloneLogic, HandlesArgumentsNoLibrary) {
+  const char* argv[] = { "DotNameStandalone", "--omit" };
+  EXPECT_EQ (runDotNameStandalone (2, argv), 0);
 }
 
-TEST (DearImGuiSDL2AppLogic, HandlesArgumentsLog2File) {
-  const char* argv[] = { "DearImGuiSDL2App", "--log2file" };
-  EXPECT_EQ (runDearImGuiSDL2App (2, argv), 0);
+TEST (DotNameStandaloneLogic, HandlesArgumentsLog2File) {
+  const char* argv[] = { "DotNameStandalone", "--log2file" };
+  EXPECT_EQ (runDotNameStandalone (2, argv), 0);
 }

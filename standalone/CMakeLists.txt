@@ -41,7 +41,7 @@ option(ENABLE_GTESTS "Enable gtests" ON)
 # ==============================================================================
 # Project attributes
 # ==============================================================================
-set(STANDALONE_NAME DearImGuiSDL2App)
+set(STANDALONE_NAME DotNameStandalone)
 string(TOLOWER "${STANDALONE_NAME}" STANDALONE_NAME_LOWER)
 set(STANDALONE_NAMESPACE dotname)
 project(
@@ -67,7 +67,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 # CPM.cmake dependencies - take care conflicts
 # ==============================================================================
 include(../cmake/CPM.cmake)
-CPMAddPackage(NAME DearImGuiSDL2TemplateClass SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage(NAME DotNameLib SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 cpm_licenses_create_disclaimer_target(
     write-licenses-${STANDALONE_NAME}
     "${CMAKE_CURRENT_BINARY_DIR}/${STANDALONE_NAME}_third_party.txt" "${CPM_PACKAGES}")
@@ -105,7 +105,7 @@ apply_sanitizers(${STANDALONE_NAME})
 # ==============================================================================
 # Set linking
 # ==============================================================================
-target_link_libraries(${STANDALONE_NAME} PRIVATE dotname::DearImGuiSDL2TemplateClass cxxopts)
+target_link_libraries(${STANDALONE_NAME} PRIVATE dotname::DotNameLib cxxopts)
 
 # ==============================================================================
 # Add missing installation exports
@@ -133,7 +133,7 @@ emscripten(${STANDALONE_NAME} 1 1 "")
 if(ENABLE_GTESTS)
     message(STATUS "GTESTS enabled")
     add_library(standalone_common INTERFACE)
-    target_link_libraries(standalone_common INTERFACE dotname::DearImGuiSDL2TemplateClass cxxopts)
+    target_link_libraries(standalone_common INTERFACE dotname::DotNameLib cxxopts)
     add_library(dotname::standalone_common ALIAS standalone_common)
     add_subdirectory(tests)
 endif()

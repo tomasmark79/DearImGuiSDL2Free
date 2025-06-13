@@ -40,7 +40,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # ==============================================================================
 # Library attributes - case size will reflect resource files case size
 # ==============================================================================
-set(LIBRARY_NAME DearImGuiSDL2TemplateClass)
+set(LIBRARY_NAME DotNameLib)
 set(LIBRARY_NAMESPACE dotname)
 project(
     ${LIBRARY_NAME}

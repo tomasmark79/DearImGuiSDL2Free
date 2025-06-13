@@ -1,7 +1,7 @@
 // MIT License
 // Copyright (c) 2024-2025 Tomáš Mark
 
-#include <DearImGuiSDL2TemplateClass/DearImGuiSDL2TemplateClass.hpp>
+#include <DotNameLib/DotNameLib.hpp>
 #include <Assets/AssetContext.hpp>
 #include <Logger/Logger.hpp>
 #include <Utils/Utils.hpp>
@@ -12,12 +12,12 @@
 
 namespace dotname {
 
-  DearImGuiSDL2TemplateClass::DearImGuiSDL2TemplateClass () {
+  DotNameLib::DotNameLib () {
     LOG_D_STREAM << libName_ << " constructed ..." << std::endl;
     AssetContext::clearAssetsPath ();
   }
 
-  DearImGuiSDL2TemplateClass::DearImGuiSDL2TemplateClass (const std::filesystem::path& assetsPath) : DearImGuiSDL2TemplateClass () {
+  DotNameLib::DotNameLib (const std::filesystem::path& assetsPath) : DotNameLib () {
     if (!assetsPath.empty ()) {
       AssetContext::setAssetsPath (assetsPath);
       LOG_D_STREAM << "Assets path given to the library\n"
@@ -26,7 +26,7 @@ namespace dotname {
     }
   }
 
-  DearImGuiSDL2TemplateClass::~DearImGuiSDL2TemplateClass () {
+  DotNameLib::~DotNameLib () {
     LOG_D_STREAM << libName_ << " ... destructed" << std::endl;
   }
 
